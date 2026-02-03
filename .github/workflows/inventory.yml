@@ -1,6 +1,0 @@
-web:
-  - server1.example.com
-  - server2.example.com
-
-db:
-  - db1.example.com
