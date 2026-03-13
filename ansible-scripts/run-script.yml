@@ -1,0 +1,8 @@
+---
+- name: run bash script
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: execute bash script
+      script: create-directory.sh

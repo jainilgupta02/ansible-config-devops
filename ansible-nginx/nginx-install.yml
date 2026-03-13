@@ -1,0 +1,26 @@
+---
+- name: Install and start Nginx
+  hosts: web
+  become: yes
+
+  tasks:
+
+    - name: Update apt packages
+      apt:
+        update_cache: yes
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Verify nginx is running
+      uri:
+        url: http://localhost
+        status_code: 200
