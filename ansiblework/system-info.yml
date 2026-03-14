@@ -1,0 +1,29 @@
+---
+- name: Gather System Information
+  hosts: webservers
+  become: yes
+ 
+  tasks:
+    - name: Get hostname
+      command: hostname
+      register: hostname_result
+ 
+    - name: Get OS version
+      command: cat /etc/os-release
+      register: os_result
+ 
+    - name: Get memory info
+      command: free -h
+      register: memory_result
+ 
+    - name: Get disk usage
+      command: df -h
+      register: disk_result
+ 
+    - name: Display all info
+      debug:
+        msg:
+          - "Hostname: {{ hostname_result.stdout }}"
+          - "OS: {{ os_result.stdout_lines[0] }}"
+          - "Memory: {{ memory_result.stdout }}"
+          - "Disk: {{ disk_result.stdout }}"
