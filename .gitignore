@@ -1,4 +1,98 @@
-*.pem
-*.retry
-*.log
+# ──────────────────────────────────────────────
+# Python Virtual Environments
+# ──────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+ENV/
+virtualenv/
+.Python
+pyvenv.cfg
+
+# ──────────────────────────────────────────────
+# Python Bytecode & Caches
+# ──────────────────────────────────────────────
 __pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ──────────────────────────────────────────────
+# Python Distribution / Build Artifacts
+# ──────────────────────────────────────────────
+dist/
+build/
+*.egg-info/
+*.egg
+.eggs/
+MANIFEST
+
+# ──────────────────────────────────────────────
+# Ansible
+# ──────────────────────────────────────────────
+*.retry
+.ansible/
+ansible.log
+/roles/*/files/tmp/
+/roles/*/files/*.bak
+
+# Ansible Galaxy downloaded roles (if not vendored)
+# roles/external/
+
+# ──────────────────────────────────────────────
+# Boto / Botocore / AWS
+# ──────────────────────────────────────────────
+# AWS credentials — never commit these
+.aws/
+aws_credentials
+credentials.ini
+
+# boto/botocore cache
+.boto
+boto.cfg
+~/.boto
+botocore/data/*.json.bak
+.botocore_cache/
+/tmp/botocore*/
+
+# ──────────────────────────────────────────────
+# Secrets & Keys
+# ──────────────────────────────────────────────
+*.pem
+*.key
+*.p12
+*.pfx
+vault_pass.txt
+vault-pass.txt
+.vault_pass
+*_secret*
+*_secrets*
+secrets.yml
+secrets.yaml
+
+# ──────────────────────────────────────────────
+# Logs & Temp Files
+# ──────────────────────────────────────────────
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ──────────────────────────────────────────────
+# Editor / IDE
+# ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.iml
+.project
+.classpath
+
