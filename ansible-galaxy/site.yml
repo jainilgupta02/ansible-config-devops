@@ -1,0 +1,6 @@
+# site.yml
+---
+- hosts: local
+  become: true
+  roles:
+    - geerlingguy.nginx

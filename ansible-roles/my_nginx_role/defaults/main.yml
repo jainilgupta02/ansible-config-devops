@@ -1,0 +1,5 @@
+# defaults/main.yml
+---
+nginx_port: 80
+#SPDX-License-Identifier: 
+# defaults file for my_nginx_role

@@ -1,0 +1,9 @@
+# tasks/main.yml
+---
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+  notify: Restart nginx
+#SPDX-License-Identifier: MIT-0
+# tasks file for my_nginx_role

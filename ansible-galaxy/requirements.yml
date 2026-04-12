@@ -1,0 +1,8 @@
+# requirements.yml
+---
+roles:
+  - name: geerlingguy.nginx
+    version: "3.2.0"
+
+collections:
+  - name: community.general

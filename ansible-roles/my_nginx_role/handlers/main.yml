@@ -1,0 +1,8 @@
+# handlers/main.yml
+---
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+#SPDX-License-Identifier: MIT-
+# handlers file for my_nginx_role

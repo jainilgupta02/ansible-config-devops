@@ -1,0 +1,134 @@
+ansible loops, variables, handlers
+
+# launch ec2 : with ubuntu ami
+
+# install ansible
+>> sudo apt update
+>> sudo apt install software-properties-common
+>> sudo add-apt-repository --yes --update ppa:ansible/ansible
+>> sudo apt install ansible
+
+
+# create a folder
+>> mkdir ansible-scripts
+>> nano inventory.ini
+
+paste the below content:
+
+[local]
+localhost ansible_connection=local
+
+>> nano ansible.cfg
+
+paste the below content:
+
+[defaults]
+inventory = inventory.ini
+
+>> nano 1_variables.yml
+
+paste the below content:
+
+- hosts: local
+  vars:
+    my_name: "John"
+    my_age: 25
+
+  tasks:
+    - name: Print name
+      debug:
+        msg: "My name is {{ my_name }}"
+
+    - name: Print age
+      debug:
+        msg: "My age is {{ my_age }}"
+        
+>> ansible-playbook 1_variables.yml
+
+## loops
+
+
+>> nano 2_loops.yaml
+
+- hosts: local
+  vars:
+    colors:
+      - Red
+      - Green
+      - Blue
+
+  tasks:
+    - name: Print each color
+      debug:
+        msg: "Color is {{ item }}"
+      loop: "{{ colors }}"
+
+
+>> ansible-playbook 2_loops.yaml
+
+## handlers
+
+>> nano 3_handlers.yml
+
+paste the below content:
+
+- hosts: local
+  tasks:
+
+    - name: Create a file
+      file:
+        path: /tmp/hello.txt
+        state: touch
+      notify: Say done
+
+  handlers:
+    - name: Say done
+      debug:
+        msg: " File was created! Handler ran!"
+>> ansible-playbook 3_handlers.yml
+  
+
+
+## assignment
+
+# Task 1 — Variables 
+
+Create a file **`task1.yml`**
+
+**Instructions:**
+- Create 3 variables — `student_name`, `course_name`, `passing_marks`
+- Print all 3 using debug
+
+**Expected Output:**
+
+```
+"msg": "Student : John"
+"msg": "Course  : Ansible Basics"
+"msg": "Passing Marks : 35"
+```
+
+####
+
+
+# Task 2 — Loops 
+
+Create a file **`task2.yml`**
+
+**Instructions:**
+- Create a list of 4 subjects → `Maths, Science, English, Computer`
+- Loop through and print each subject
+- Also create a file for each subject inside `/tmp/`
+  - Example → `/tmp/Maths.txt`, `/tmp/Science.txt`
+
+**Expected Output:**
+```
+"msg": "Subject → Maths"
+"msg": "Subject → Science"
+"msg": "Subject → English"
+"msg": "Subject → Computer"
+
+changed: /tmp/Maths.txt
+changed: /tmp/Science.txt
+changed: /tmp/English.txt
+changed: /tmp/Computer.txt
+```
